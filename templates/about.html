@@ -56,7 +56,10 @@
             <h1 style="text-align: center;">題目標題</h1>
             <div class="card-body">
                 <p class="card-text">題目說明</p>
-                <textarea class="form-control" id="ans" rows="15"></textarea>
+                <form action="/testans" method="post">
+                <textarea class="form-control" id="ans" rows="15" name="ans"></textarea>
+                <button type="submit">送出</button>
+                </form>
                 <div style="text-align:center;">
                     <a href="html/about.html" class="btn btn-danger" >Go somewhere</a>
                 </div>

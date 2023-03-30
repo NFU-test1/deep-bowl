@@ -1,0 +1,11 @@
+{% if appInfo != undefined %}
+<h2>AppInfo : {{name}}</h2>
+<p>id : {{appInfo.id}}</p>
+<p>name : {{appInfo.name}}</p>
+<p>version : {{appInfo.version}}</p>
+<p>author : {{appInfo.author}}</p>
+<p>remark : {{appInfo.remark}}</p>
+{%for i in x %}
+    <h1>{{i}}</h1>
+{% endfor %}
+{% endif %}

@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,url_for,redirect
 import os
 
 app = Flask(__name__)
@@ -18,17 +18,40 @@ def number(id):
         print(i)
     return f'{id}'
 
-@app.route("/login",methods = ['GET'])
+@app.route("/login",methods = ['GET','POST'])
 def user():
-    id = request.args.get('id')
-    password = request.args.get('password')
-    return f"{id},{password}"
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        #print(email,password)
+        return redirect(url_for('page2',id=email,ps=password))
+    else:
+        return render_template('login.html')
 
 
 
 @app.route("/test")
 def about():
     return render_template('about.html')
+
+@app.route('/page/app')
+def pageAppInfo():
+    name = 'asdfjlkejaeklf'
+    appInfo = {  # dict
+        'id': 5,
+        'name': 'Python - Flask',
+        'version': '1.0.1',
+        'author': 'Enoxs',
+        'remark': 'Python - Web Framework'
+    }
+    x = [i for i in range(5)]
+    return render_template('page.html', appInfo=appInfo,name = name,x = x)
+
+@app.route('/page2')
+def page2():
+    email = request.args.get('id')
+    password = request.args.get('ps')
+    return render_template('page2.html',email=email,password=password)
 
 @app.route("/testans",methods = ['post'])
 def check():

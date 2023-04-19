@@ -1,11 +1,40 @@
-{% if appInfo != undefined %}
-<h2>AppInfo : {{name}}</h2>
-<p>id : {{appInfo.id}}</p>
-<p>name : {{appInfo.name}}</p>
-<p>version : {{appInfo.version}}</p>
-<p>author : {{appInfo.author}}</p>
-<p>remark : {{appInfo.remark}}</p>
-{%for i in x %}
-    <h1>{{i}}</h1>
-{% endfor %}
-{% endif %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock title %}</title>
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="{{ url_for('static',filename='css/admin-styles.css') }}" rel="stylesheet" />
+    {% block head %} {% endblock head %}
+</head>
+
+<body>
+    {% include 'navbar2.html' %}
+    <div id="layoutSidenav">
+        {% include 'sidenav.html' %}
+        <div id="layoutSidenav_content">
+            <main>
+                {% if appInfo != undefined %}
+                <h2>AppInfo : {{name}}</h2>
+                <p>id : {{appInfo.id}}</p>
+                <p>name : {{appInfo.name}}</p>
+                <p>version : {{appInfo.version}}</p>
+                <p>author : {{appInfo.author}}</p>
+                <p>remark : {{appInfo.remark}}</p>
+                {%for i in range(x|length) %}
+                    <h1>{{ i , x[i]}}</h1>
+                {% endfor %}
+                {% endif %}
+            </main>
+            
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="{{ url_for('static',filename='js/admin-scripts.js') }}"></script>
+
+</html>

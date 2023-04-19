@@ -1,0 +1,30 @@
+{% extends 'layout/layout-admin.html' %}
+{%block main%}
+<div class="container-fluid px-4 mt-3">
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file"  />
+        <input type="submit" value="提交" />
+    </form>  
+</div>
+ 
+
+{% if type == '新增成功' %}
+    <script src="/static/js/sweetalert2@11.js"></script>
+    <script>
+        Swal.fire(
+            '{{ type }}',
+            'You clicked the button!',
+            'success'
+        )
+    </script>
+{% elif type == '副檔名不符' %}
+    <script src="/static/js/sweetalert2@11.js"></script>
+    <script>
+        Swal.fire({
+        icon: 'error',
+        title: '{{ type }}',
+        text: '請確認你的檔案類型！'
+        })
+    </script>
+{% endif %}
+{%endblock %}

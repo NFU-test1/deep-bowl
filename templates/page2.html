@@ -1,4 +1,23 @@
+{% extends 'layout/layout.html' %}
+
+{% block content %}
 {% if email and password %}
 <h2>email : {{email}}</h2>
 <h2>password : {{ password}}</h2>
+<button onclick="check();">點選我</button>
+
+{% if type %}
+<script src="/static/js/sweetalert2@11.js"></script>
+<script>
+    Swal.fire(
+        '{{ type }}',
+        'You clicked the button!',
+        'success'
+    )
+</script>
 {% endif %}
+{% endif %}
+
+
+{% endblock %}
+
